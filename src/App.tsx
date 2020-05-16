@@ -3,50 +3,81 @@ import React from 'react';
 import Canvas from './Canvas';
 import './style.css';
 
-const size = 10;
+const sizeOfTiles = 10;
+const sizeBetweenTiles = sizeOfTiles * 2;
 
 class App extends React.Component {
-  drawTile = (x: number, y: number, color = '#333') => {
-    let canvas = document.querySelector('canvas')?.getContext('2d')!;
-    let side = 0;
+  flatHexCorner = (x: number, y: number, i: number) => {
+    let angleDeg = 60 * i;
+    let angleRad = (Math.PI / 180) * angleDeg;
+    return {
+      x: x + sizeOfTiles * Math.cos(angleRad),
+      y: y + sizeOfTiles * Math.sin(angleRad),
+    };
+  };
 
-    // canvas.rotate((90 * Math.PI) / 180);
-    // canvas.rotate((-90 * Math.PI) / 180);
+  drawFlatHex = (x: number, y: number, color: string) => {
+    let point: any;
+    let ctx = document.querySelector('canvas')?.getContext('2d')!;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
 
-    if (canvas != null) {
-      canvas.beginPath();
-      //   canvas.moveTo(x + 10 + size * Math.cos(0), y + size * Math.sin(0));
-      canvas.moveTo(x + size, y + size);
+    for (let i = 0; i < 7; i++) {
+      point = this.flatHexCorner(x, y, i);
+      ctx.lineTo(point.x, point.y);
+    }
 
-      for (side; side < 7; side++) {
-        canvas.lineTo(
-          x + size * Math.cos((side * 2 * Math.PI) / 6),
-          y + size * Math.sin((side * 2 * Math.PI) / 6),
+    ctx.fillStyle = color;
+    ctx.fill();
+  };
+
+  pointyHexCorner = (x: number, y: number, i: number) => {
+    let angleDeg = 60 * i - 30;
+    let angleRad = (Math.PI / 180) * angleDeg;
+    return {
+      x: x + sizeOfTiles * Math.cos(angleRad),
+      y: y + sizeOfTiles * Math.sin(angleRad),
+    };
+  };
+
+  drawPointyHex = (x: number, y: number, color: string) => {
+    let point: any;
+    let ctx = document.querySelector('canvas')?.getContext('2d')!;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+
+    for (let i = 0; i < 7; i++) {
+      point = this.pointyHexCorner(x, y, i);
+      ctx.lineTo(point.x, point.y);
+    }
+
+    ctx.fillStyle = color;
+    ctx.fill();
+  };
+
+  drawGrid = () => {
+    let color = 'blue';
+    let xOffset = 0;
+
+    for (let x = 0; x < 34; x++) {
+      color = 'blue';
+      for (let y = 0; y < 20; y++) {
+        color = y % 2 === 0 ? 'green' : 'blue';
+        xOffset = y % 2 === 0 ? sizeOfTiles * 1.5 : 0;
+
+        // this.drawPointyHex(
+        this.drawFlatHex(
+          x * (sizeBetweenTiles + sizeOfTiles) + xOffset,
+          (y * (Math.sqrt(3) * sizeOfTiles)) / 2,
+          color,
         );
       }
-
-      canvas.fillStyle = color;
-      canvas.fill();
-      canvas.setTransform(1, 0, 0, 1, 0, 0);
     }
   };
 
   componentDidMount() {
-    let color = 'blue';
-    let xOffset = 0;
-    let yOffset = 0;
-
-    for (let i = 0; i < 30; i++) {
-      color = 'blue';
-
-      for (let j = 0; j < 10; j++) {
-        color = j % 2 === 0 ? 'green' : 'blue';
-        xOffset = i % 2 === 0 ? 0 : 10;
-        yOffset = j % 2 === 0 ? 0 : 0;
-
-        this.drawTile(i * 10 + xOffset, j * 18 + yOffset, color);
-      }
-    }
+    this.drawGrid();
+    // this.drawFlatHex(sizeOfTiles, sizeOfTiles, 'black');
   }
 
   render() {

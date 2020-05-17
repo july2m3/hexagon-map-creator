@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/hexagon-map-creator/static/css/main.930cdb94.chunk.css",
+    "main.js": "/hexagon-map-creator/static/js/main.e1ef06b8.chunk.js",
+    "main.js.map": "/hexagon-map-creator/static/js/main.e1ef06b8.chunk.js.map",
+    "runtime-main.js": "/hexagon-map-creator/static/js/runtime-main.130e2934.js",
+    "runtime-main.js.map": "/hexagon-map-creator/static/js/runtime-main.130e2934.js.map",
+    "static/js/2.18465c13.chunk.js": "/hexagon-map-creator/static/js/2.18465c13.chunk.js",
+    "static/js/2.18465c13.chunk.js.map": "/hexagon-map-creator/static/js/2.18465c13.chunk.js.map",
+    "index.html": "/hexagon-map-creator/index.html",
+    "precache-manifest.48b6d26505ca61eb3e6bbcbb0ab9393e.js": "/hexagon-map-creator/precache-manifest.48b6d26505ca61eb3e6bbcbb0ab9393e.js",
+    "service-worker.js": "/hexagon-map-creator/service-worker.js",
+    "static/css/main.930cdb94.chunk.css.map": "/hexagon-map-creator/static/css/main.930cdb94.chunk.css.map",
+    "static/js/2.18465c13.chunk.js.LICENSE.txt": "/hexagon-map-creator/static/js/2.18465c13.chunk.js.LICENSE.txt",
+    "static/media/borderless.png": "/hexagon-map-creator/static/media/borderless.b3f0e1f5.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.130e2934.js",
+    "static/js/2.18465c13.chunk.js",
+    "static/css/main.930cdb94.chunk.css",
+    "static/js/main.e1ef06b8.chunk.js"
+  ]
+}

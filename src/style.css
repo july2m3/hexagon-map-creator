@@ -11,6 +11,7 @@ body {
   background-color: #333;
   color: #333;
   display: flex;
+  align-content: center;
   justify-content: center;
   text-align: center;
 }
